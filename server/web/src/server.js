@@ -11,7 +11,7 @@ app.use(express.json())
 
 var corsOptions = {
   origin: [
-    'http://localhost:2602', 
+    'http://localhost:2603', 
     'http://sisbi.sde.ce.gov.br', 
     'https://sisbi.sde.ce.gov.br'
   ],

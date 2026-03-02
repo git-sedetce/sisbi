@@ -6,6 +6,7 @@ var checkRole = require('../service/checkRole')
 
 const router = Router()
 router.post('/registerParticipante', CadastroControllers.cadastroParticipante);
+router.get('/takecitys', CadastroControllers.pegaCidades)
 router.get('/participantes', auth.authenticatedUser, checkRole.checkRole([1]), CadastroControllers.verParticipantes)
 router.get('/participante/:id', auth.authenticatedUser, checkRole.checkRole([1]),CadastroControllers.participante)
 router.get('/checkcpf/:cpf', CadastroControllers.consultarCPF)

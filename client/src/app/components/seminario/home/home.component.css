@@ -1,0 +1,104 @@
+/* ===== FUNDO GERAL ===== */
+section {
+  margin: 0;
+  padding: 0;
+  background-image: url('/assets/imgs/imagens/cor-de-fundo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Wrapper principal */
+.page-wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Área central */
+.content-area {
+  padding-top: 40px;
+  padding-bottom: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== ELEMENTOS LATERAIS ===== */
+.elemento {
+  position: absolute;
+  top: 0;
+  height: 45%;
+  z-index: 1;
+  opacity: 1;
+}
+
+.elemento-esquerda {
+  left: 0;
+}
+
+.elemento-direita {
+  right: 0;
+}
+
+/* Oculta elementos laterais no mobile */
+@media (max-width: 768px) {
+  .elemento {
+    display: none;
+  }
+}
+
+/* ===== LOGO EVENTO ===== */
+.logo-evento {
+  max-width: 35%;
+  height: auto;
+}
+
+/* ===== BADGES VERDES ===== */
+.info-badge {
+  background-color: #2ea44f;
+  color: white;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  display: inline-block;
+}
+
+.endereco {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* ===== LOGOS ORGANIZADORES ===== */
+.logos {
+  max-width: 100%;
+  margin-top: 20px;
+}
+
+/* ===== FAIXA INFERIOR ===== */
+.faixa-inferior {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-inscricao {
+  background-color: #1b7f3a;
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.btn-inscricao:hover {
+  background-color: #146c31;
+  color: #fff;
+  transform: translateY(-2px);
+}

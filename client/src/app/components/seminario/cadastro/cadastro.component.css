@@ -1,0 +1,154 @@
+/* ================= WRAPPER ================= */
+.form-wrapper {
+  min-height: 100vh;
+  background: transparent; /* mantém fundo da landing */
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+/* ================= CARD ================= */
+.form-container {
+  width: 100%;
+  max-width: 1000px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* ================= TÍTULOS ================= */
+h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  color: #1b7f3a;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+/* ================= GRID ================= */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.4rem;
+}
+
+/* ================= GRUPOS ================= */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* ================= INPUTS ================= */
+input,
+select {
+  /* width: 100%; */
+  padding: 0.75rem 1rem;
+  border-radius: 50px; /* igual aos badges */
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #1b7f3a;
+  box-shadow: 0 0 0 3px rgba(27, 127, 58, 0.15);
+}
+
+/* ================= LABELS ================= */
+label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* ================= ALERTS ================= */
+.alert {
+  font-size: 0.75rem;
+  padding: 0.4rem 0.6rem;
+  margin-top: 0.4rem;
+  border-radius: 8px;
+}
+
+/* ================= CHECKBOX ================= */
+.checkbox-container {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: #f3f9f4;
+  border: 1px solid #e3f2e7;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.checkbox-item input {
+  margin-top: 0.3rem;
+}
+
+.checkbox-item label {
+  font-size: 0.9rem;
+  line-height: 1.4rem;
+  color: #374151;
+  cursor: pointer;
+}
+
+/* ================= BOTÃO ================= */
+button {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 2rem;
+  background-color: #1b7f3a;
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+button:hover {
+  background-color: #146c31;
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ================= TABLET ================= */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .form-group.full {
+    grid-column: span 2;
+  }
+}
+
+/* ================= DESKTOP ================= */
+@media (min-width: 1024px) {
+  .form-container {
+    padding: 3rem 3.5rem;
+  }
+}

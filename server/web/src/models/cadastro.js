@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 
-const formatarTextPtBr = require('../utils/formatarTextoPtBr')
+const formatarTextoPtBr = require('../utils/formatarTextoPtBr')
 module.exports = (sequelize, DataTypes) => {
   class Cadastro extends Model {
     /**
@@ -23,7 +23,9 @@ module.exports = (sequelize, DataTypes) => {
     cpf: DataTypes.STRING,
     empresa: DataTypes.STRING,
     cargo: DataTypes.STRING,
-    status: DataTypes.STRING
+    status: DataTypes.STRING,
+    confirma_informacao: DataTypes.BOOLEAN,
+    uso_dados: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'Cadastro',
@@ -41,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
 };
 
 const CAMPOS_EXCLUIDOS = [
-  'inscricao'
+  'inscricao', 'email'
 ];
 
 // 🔹 Função genérica: percorre TODOS os campos STRING

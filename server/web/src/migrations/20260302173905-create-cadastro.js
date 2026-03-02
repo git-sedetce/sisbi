@@ -38,6 +38,12 @@ module.exports = {
       status: {
         type: Sequelize.STRING
       },
+      confirma_informacao: {
+        type: Sequelize.BOOLEAN
+      },
+      uso_dados: {
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

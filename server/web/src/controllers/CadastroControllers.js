@@ -6,18 +6,36 @@ const path = require("path");
 class CadastroControllers {
   static async cadastroParticipante(req, res) {
     const newRegister = req.body;
-    // console.log('newRegister', newRegister);
+
     try {
-      const novoParticipante = await database.Cadastro.create(newRegister);
+      // 1️⃣ Verifica se já existe cadastro para a cidade
+      const cadastroExistente = await database.Cadastro.findOne({
+        where: { cidade_id: newRegister.cidade_id },
+      });
+
+      // 2️⃣ Define o status conforme regra
+      const statusInscricao = cadastroExistente
+        ? "pendente"
+        : "inscricao_realizada";
+
+      // 3️⃣ Cria o registro já com o status
+      const novoParticipante = await database.Cadastro.create({
+        ...newRegister,
+        status: statusInscricao,
+      });
+
+      // 4️⃣ Gera número do pedido
       const numeroPedido = `PED-${String(novoParticipante.id).padStart(6, "0")}`;
 
-      await novoParticipante.update({ inscricao: numeroPedido });
-      ("");
+      await novoParticipante.update({
+        inscricao: numeroPedido,
+      });
+
       return res.status(200).json(novoParticipante);
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }  
+  }
 
   static async pegaCidades(req, res) {
     try {
@@ -43,7 +61,7 @@ class CadastroControllers {
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }  
+  }
 
   static async consultarCPF(req, res) {
     const { cpf } = req.params;
@@ -62,7 +80,7 @@ class CadastroControllers {
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }  
+  }
 
   static async verParticipantes(req, res) {
     // const { status } = req.query;
@@ -92,17 +110,19 @@ class CadastroControllers {
                 attributes: ["id", "nome"],
               },
             ],
-          }
+          },
         ],
       });
 
       return res.status(200).json(getParticpante);
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: "Erro ao buscar os participantes" });
+      return res
+        .status(500)
+        .json({ message: "Erro ao buscar os participantes" });
     }
   }
-  
+
   static async participante(req, res) {
     const { id } = req.params;
     // const { status } = req.query;
@@ -132,16 +152,18 @@ class CadastroControllers {
                 attributes: ["id", "nome"],
               },
             ],
-          }
+          },
         ],
       });
 
       return res.status(200).json(getParticpante);
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: "Erro ao buscar os participantes" });
+      return res
+        .status(500)
+        .json({ message: "Erro ao buscar os participantes" });
     }
-  }    
+  }
 
   static async atualiza(req, res) {
     const { id } = req.params;
@@ -167,7 +189,6 @@ class CadastroControllers {
       const participante = await database.Cadastro.findOne({
         where: { id: Number(id) },
         attributes: ["id", "nome"],
-       
       });
 
       if (!participante) {
