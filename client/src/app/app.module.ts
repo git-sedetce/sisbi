@@ -19,6 +19,11 @@ import { DatePipe } from '@angular/common';
 import { AuthInterceptor } from './service/interceptor/auth.interceptor';
 import { ComoChegarComponent } from './components/seminario/como-chegar/como-chegar.component';
 import { PalestrantesComponent } from './components/seminario/palestrantes/palestrantes.component';
+import { LoginComponent } from './components/admin/login/login.component';
+import { RegisterComponent } from './components/admin/register/register.component';
+import { ResetSenhaComponent } from './components/admin/reset-senha/reset-senha.component';
+import { ListaUsersComponent } from './components/admin/lista-users/lista-users.component';
+import { HomeAdminComponent } from './components/admin/home-admin/home-admin.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +33,12 @@ import { PalestrantesComponent } from './components/seminario/palestrantes/pales
     HomeComponent,
     CadastroComponent,
     ComoChegarComponent,
-    PalestrantesComponent
+    PalestrantesComponent,
+    LoginComponent,
+    RegisterComponent,
+    ResetSenhaComponent,
+    ListaUsersComponent,
+    HomeAdminComponent
   ],
   imports: [
     BrowserModule,
