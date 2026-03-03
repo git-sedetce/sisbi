@@ -35,7 +35,7 @@
         </div>
 
         <div class="form-group">
-          <label>Email do Produtor</label>
+          <label>Email</label>
 
           <input type="email" id="email" name="email" [(ngModel)]="participante.email"
             #email="ngModel" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
@@ -61,19 +61,28 @@
           </div>
         </div>
 
-        <div class="form-group full">
+        <!-- <div class="form-group full">
           <label>Empresa/Órgão</label>
           <input type="text" id="empresa" name="empresa" [(ngModel)]="participante.empresa" #empresa="ngModel"
             required placeholder="Endereço completo">
           <div *ngIf="!empresa.valid && empresa.touched" class="alert alert-danger" role="alert">
             Empresa/Órgão é obrigatório
           </div>
-        </div>
+        </div> -->
 
         <div class="form-group">
-          <label>Cargo</label>
-          <input type="text" id="cargo" name="cargo" [(ngModel)]="participante.cargo"
-            #cargo="ngModel" required placeholder="Insira o ponto de referência">
+          <label for="cargo">Cargo/Função</label>
+          <select name="cargo" id="cargo" [(ngModel)]="participante.cargo" #cargo="ngModel" required>
+            <option value="">Selecione</option>
+            <option value="Prefeito">Prefeito</option>
+            <option value="Secretário de Agricultura">Secretário de Agricultura</option>
+            <option value="Técnico do Município">Técnico do Município</option>
+            <option value="Convidado">Convidado</option>
+            <option value="SDE (Colaborador)">SDE (Colaborador)</option>
+            <option value="Adagri (Colaborador)">Adagri (Colaborador)</option>
+          </select>
+          <!-- <input type="text" id="cargo" name="cargo" [(ngModel)]="participante.cargo"
+            #cargo="ngModel" required placeholder="Insira o cargo"> -->
           <div *ngIf="!cargo.valid && cargo.touched" class="alert alert-danger" role="alert">
             Cargo é obrigatório
           </div>
@@ -81,7 +90,7 @@
 
         <div class="form-group">
           <label for="city_id">Cidade</label>
-          <select name="city_id" id="city_id" [(ngModel)]="participante.cidade_id" #cidade="ngModel" required>
+          <select name="city_id" id="city_id" [(ngModel)]="participante.cidade_id" #cidade_id="ngModel" required>
             <option value="">Selecione</option>
             <option *ngFor="let city of city_list" [value]=city.id>{{city.nome_municipio}}</option>
           </select>

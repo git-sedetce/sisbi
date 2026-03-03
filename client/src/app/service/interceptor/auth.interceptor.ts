@@ -9,13 +9,13 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
-import { CadastroService } from '../cadastro.service';
+import { UserServiceService } from '../user-service.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
-    private auth: CadastroService,
+    private auth: UserServiceService,
     private toastr: ToastrService
   ) {}
 

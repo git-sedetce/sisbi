@@ -5,3 +5,4 @@ server/web/.sequelizerc
 server/web/node_modules/*
 client/node_modules/*
 client/.angular/cache/*
+client/dist/*

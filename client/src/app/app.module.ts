@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +14,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxApexchartsModule } from 'ngx-apexcharts';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
+import { AuthInterceptor } from './service/interceptor/auth.interceptor';
+import { ComoChegarComponent } from './components/seminario/como-chegar/como-chegar.component';
+import { PalestrantesComponent } from './components/seminario/palestrantes/palestrantes.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    CadastroComponent
+    CadastroComponent,
+    ComoChegarComponent,
+    PalestrantesComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +42,15 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    provideClientHydration(),
+    DatePipe,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
