@@ -1,5 +1,15 @@
-header {
-  margin: -1px;
+/* ===== NAVBAR BASE ===== */
+.navbar-custom {
+  transition: all 0.3s ease;
+  padding: 1rem 0;
+  background-color: transparent;
+}
+
+/* ================= ESTADO AO ROLAR ================= */
+.navbar-custom.scrolled {
+  background-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 0.6rem 0;
 }
 
 /* tamanho logo */
@@ -8,28 +18,64 @@ header {
   width: auto;
 }
 
-/* hover menu */
-.navbar-nav .nav-link {
-  color:aliceblue;
+/* ===== BRAND ===== */
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #ffffff;
+  transition: color 0.3s ease;
 }
 
-/* hover menu */
-.navbar-nav .nav-link:hover {
-  background-color: #ffc107;
-  font-weight: bold;
-  border-radius: 6px;
+.navbar-custom.scrolled .navbar-brand {
+  color: #1b7f3a;
 }
 
-/* tablet */
-@media (max-width: 992px) {
-  .logo-header {
-    height: 42px;
-  }
+.navbar-brand:hover {
+  color: #146c31;
 }
 
-/* mobile */
-@media (max-width: 576px) {
-  .logo-header {
-    height: 36px;
-  }
+/* ===== LINKS ===== */
+.nav-link {
+  font-weight: 500;
+  color: #1b7f3a; /* verde já visível no topo */
+  transition: all 0.3s ease;
+}
+
+.navbar-custom.scrolled .nav-link {
+  color: #374151;
+}
+
+.nav-link:hover {
+  background-color: #ebdc06;
+  border-radius: 2rem;
+}
+
+.nav-link.active {
+  color: #1b7f3a;
+  font-weight: 600;
+}
+
+/* ===== LINK DESTAQUE (CRACHÁ) ===== */
+.nav-link.destaque {
+  background-color: #1b7f3a;
+  color: #fff !important;
+  padding: 0.4rem 1rem;
+  border-radius: 30px;
+}
+
+.nav-link.destaque:hover {
+  background-color: #146c31;
+}
+
+/* ================= BOTÃO MOBILE ================= */
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
+.navbar-custom.scrolled .navbar-toggler-icon {
+  filter: invert(0);
 }

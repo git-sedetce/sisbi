@@ -1,73 +1,51 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom">
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top" [class.scrolled]="isScrolled">
     <div class="container">
 
       <!-- Logo -->
-      <a class="navbar-brand d-flex align-items-center" routerLink="/home">
+      <a class="navbar-brand" routerLink="/home">
         <img src="assets/imgs/logos/Brasao-100x121.png" alt="Brasão do Governo do Estado do Ceará" class="logo-header">
       </a>
 
       <!-- Botão mobile -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuHeader">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <!-- Conteúdo colapsável -->
-      <div class="collapse navbar-collapse" id="menuHeader">
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 
         <!-- Menu principal -->
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav gap-lg-3">
 
           <li class="nav-item">
-            <a routerLink="/home" class="nav-link">
-              <i class="fa-regular fa-house me-1"></i> Home
+            <a class="nav-link" routerLink="/como-chegar" routerLinkActive="active">
+              Como chegar
             </a>
           </li>
-
           <li class="nav-item">
-            <a routerLink="/quemsomos" class="nav-link">
-              <i class="fa-regular fa-newspaper me-1"></i> O que é?
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a routerLink="/questions" class="nav-link">
-              <i class="fa-solid fa-circle-question me-1"></i> Dúvidas?
+            <a class="nav-link" routerLink="/palestrantes" routerLinkActive="active">
+              Palestrantes
             </a>
           </li>
 
           <li class="nav-item" *ngIf="authenticated">
-            <a routerLink="/listfarmers" class="nav-link">
-              <i class="fa-solid fa-seedling me-1"></i> Agricultores
-            </a>
-          </li>
-
-          <li class="nav-item" *ngIf="authenticated">
-            <a routerLink="/admin" class="nav-link">
-              <i class="fa-solid fa-chart-pie me-1"></i> Admin
-            </a>
-          </li>
-
-          <li class="nav-item" *ngIf="profile === 1">
-            <a routerLink="/cadastro" class="nav-link">
-              <i class="fa-solid fa-user-plus me-1"></i> Adicionar Usuário
-            </a>
-          </li>
-
-          <li class="nav-item" *ngIf="profile === 1">
-            <a routerLink="/listusers" class="nav-link">
-              <i class="fa-solid fa-users me-1"></i> Usuários
-            </a>
-          </li>
+          <a class="nav-link destaque"
+             routerLink="/cracha"
+             routerLinkActive="active">
+            Crachá
+          </a>
+        </li>
         </ul>
 
         <!-- Área direita -->
         <div class="d-flex align-items-center gap-2 flex-wrap">
 
-          <ng-container *ngIf="!authenticated">
+          <!-- <ng-container *ngIf="!authenticated">
             <button routerLink="/login" class="btn btn-light">Login</button>
             <button routerLink="/cadastro" class="btn btn-primary">Cadastre-se</button>
-          </ng-container>
+          </ng-container> -->
 
           <ng-container *ngIf="authenticated">
             <span class="fw-bold text-white">Olá {{ user_name }}</span>

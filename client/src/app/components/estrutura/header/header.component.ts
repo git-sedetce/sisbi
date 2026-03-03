@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { UserServiceService } from '../../../service/user-service.service';
 
@@ -14,6 +14,8 @@ export class HeaderComponent implements OnInit {
   user_name: string = '';
   profile: number = 0;
   sexec_id: number = 0;
+
+  isScrolled = false;
 
   private sub!: Subscription;
 
@@ -33,6 +35,11 @@ export class HeaderComponent implements OnInit {
 
   ngOnDestroy() {
     if (this.sub) this.sub.unsubscribe();
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled = window.scrollY > 50;
   }
 
   updateUserInfo(user: any) {
