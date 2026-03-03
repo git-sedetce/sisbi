@@ -1,0 +1,123 @@
+/* ================= FUNDO E WRAPPER ================= */
+.page-wrapper {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 100px;
+  padding-bottom: 60px;
+}
+
+/* ================= ELEMENTOS LATERAIS ================= */
+.elemento {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  z-index: 0;
+}
+
+.elemento-esquerda {
+  left: 0;
+}
+
+.elemento-direita {
+  right: 0;
+}
+
+@media (max-width: 768px) {
+  .elemento {
+    display: none;
+  }
+}
+
+/* ================= CONTEÚDO ================= */
+.content-area {
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= HEADER ================= */
+.header-evento h2 {
+  color: #1b7f3a;
+  font-weight: 700;
+}
+
+.info-badge {
+  background-color: #1b7f3a;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* ================= BOTÃO ================= */
+.btn-inscricao {
+  background-color: #146c31;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.btn-inscricao:hover {
+  background-color: #0f5224;
+}
+
+/* ================= LISTA ================= */
+.palestrantes-lista {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* ================= CARD ================= */
+.palestrante-card {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+/* ================= FOTO ================= */
+.foto img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 6px solid #e3f2e7;
+}
+
+/* ================= TEXTO ================= */
+.tema {
+  color: #1b7f3a;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.nome {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.resumo {
+  color: #374151;
+  line-height: 1.6;
+}
+
+/* ================= RESPONSIVO ================= */
+@media (max-width: 992px) {
+  .palestrante-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .foto img {
+    width: 140px;
+    height: 140px;
+  }
+}
