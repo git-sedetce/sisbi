@@ -12,16 +12,20 @@ class UserController {
         return res.status(400).json({ message: "Dados obrigatórios ausentes" });
       }
 
-      if(novoUser.user_email.split('@')[1] !== 'sde.ce.gov.br') {
-        return res.status(400).json({ message: "Email inválido para cadastro!" });
+      const dominio = user.user_email.split("@")[1];
+
+      const dominiosPermitidos = ["sde.ce.gov.br", "adagri.ce.gov.br"];
+
+      if (!dominiosPermitidos.includes(dominio)) {
+        return res.status(400).send({ message: "Domínio não permitido" });
       }
 
-      const emailExistente = await database.user.findOne({
+      const emailExistente = await database.User.findOne({
         where: { user_email: novoUser.user_email },
       });
       if (emailExistente) {
         return res.status(400).json({ message: "Email já cadastrado!" });
-      }      
+      }
 
       const salt = await bcrypt.genSalt(10);
       novoUser.user_password = await bcrypt.hash(novoUser.user_password, salt);
@@ -29,7 +33,7 @@ class UserController {
       novoUser.profile_id = 4;
       novoUser.user_active = false;
 
-      const userCriado = await database.user.create(novoUser);
+      const userCriado = await database.User.create(novoUser);
 
       // Remove a senha antes de responder
       const { user_password, ...data } = userCriado.toJSON();
@@ -88,7 +92,7 @@ class UserController {
   static async checarEmail(req, res) {
     const { email } = req.params;
     try {
-      const verificaEmail = await database.user.findOne({
+      const verificaEmail = await database.User.findOne({
         where: { user_email: email },
         attributes: ["user_name", "user_email"],
       });
@@ -108,7 +112,7 @@ class UserController {
     const user = req.body;
     //console.log('user', user)
     try {
-      const verificaUser = await database.user.findOne({
+      const verificaUser = await database.User.findOne({
         where: { user_email: user.user_email },
       });
       if (!verificaUser) {
@@ -117,7 +121,7 @@ class UserController {
       let newPin = Math.floor(1000 + Math.random() * 9000);
       user.user_pin;
 
-      const novoPin = await database.user.update(
+      const novoPin = await database.User.update(
         { user_pin: newPin },
         { where: { user_email: user.user_email } },
       );
@@ -163,7 +167,7 @@ class UserController {
     const user = req.body;
 
     try {
-      const verificaUser = await database.user.findOne({
+      const verificaUser = await database.User.findOne({
         where: { user_email: user.user_email },
       });
       if (!verificaUser) {
@@ -202,7 +206,7 @@ class UserController {
 
   static async pegaUsers(req, res) {
     try {
-      const getUser = await database.user.findAll({
+      const getUser = await database.User.findAll({
         order: [["nome", "ASC"]],
         attributes: [
           "id",
@@ -249,8 +253,8 @@ class UserController {
     const user = req.body;
     // console.log('user', user)
     try {
-      await database.user.update(user, { where: { id: Number(id) } });
-      const updateUser = await database.user.findOne({
+      await database.User.update(user, { where: { id: Number(id) } });
+      const updateUser = await database.User.findOne({
         where: { id: Number(id) },
       });
       return res.status(200).json(updateUser);
@@ -268,7 +272,7 @@ class UserController {
     const user = req.body;
     //console.log('user', user)
     try {
-      const verificaUser = await database.user.findOne({
+      const verificaUser = await database.User.findOne({
         where: { user_email: user.user_email },
       });
       if (!verificaUser) {
@@ -281,12 +285,12 @@ class UserController {
       //console.log('newPassword', newPassword)
 
       if (verificaUser.user_active === false) {
-        const novaSenha = await database.user.update(
+        const novaSenha = await database.User.update(
           { user_password: newPassword },
           { where: { user_email: user.user_email } },
         );
       } else {
-        const novaSenha = await database.user.update(
+        const novaSenha = await database.User.update(
           { user_password: newPassword },
           { where: { user_email: user.user_email } },
         );
@@ -304,13 +308,13 @@ class UserController {
   static async deletaUsers(req, res) {
     const { id } = req.params;
 
-    const apaga = await database.user.findOne({
-          where: { id: Number(id) },
-          attributes: ["nome"],
-        });
+    const apaga = await database.User.findOne({
+      where: { id: Number(id) },
+      attributes: ["nome"],
+    });
 
     try {
-      await database.user.destroy({ where: { id: Number(id) } });
+      await database.User.destroy({ where: { id: Number(id) } });
       return res.status(200).json({
         mensagem: `O Usuario ${apaga.nome} foi excluido com sucesso!!`,
       });
