@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LoginUser } from '../../../models/login-user.model';
-import { UserServiceService } from '../../../service/user-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { UserServiceService } from '../../../service/user-service.service';
 
 @Component({
   selector: 'app-login',
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     this.loginUsers.user_password = this.serviceUser.CriptografarMD5(this.loginUsers.user_password)
-    // console.log('loginUser', this.loginUsers)
+    console.log('loginUser', this.loginUsers)
     this.serviceUser.login(this.loginUsers).subscribe({
       next: (res) => res,
       error: (e) => (this.toastr.error(e.error.message), this.formLogin.reset())

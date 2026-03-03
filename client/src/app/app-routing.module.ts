@@ -7,6 +7,9 @@ import { PalestrantesComponent } from './components/seminario/palestrantes/pales
 import { RegisterComponent } from './components/admin/register/register.component';
 import { LoginComponent } from './components/admin/login/login.component';
 import { ResetSenhaComponent } from './components/admin/reset-senha/reset-senha.component';
+import { ListaUsersComponent } from './components/admin/lista-users/lista-users.component';
+import { HomeAdminComponent } from './components/admin/home-admin/home-admin.component';
+import { CrachaComponent } from './components/admin/cracha/cracha.component';
 
 const routes: Routes = [
 
@@ -18,6 +21,10 @@ const routes: Routes = [
   { path: 'cadastro', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'resetSenha', component: ResetSenhaComponent },
+  { path: 'listusers', component: ListaUsersComponent },
+  { path: 'admin', component: HomeAdminComponent },
+  { path: 'cracha', component: CrachaComponent },
+
 ];
 
 @NgModule({

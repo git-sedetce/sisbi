@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { User } from '../../../models/user.model';
 import { Audit } from '../../../models/audit.model';
-import { UserServiceService } from '../../../service/user-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuditService } from '../../../service/audit.service';
+import { UserServiceService } from '../../../service/user-service.service';
 declare var bootstrap: any;
 
 @Component({

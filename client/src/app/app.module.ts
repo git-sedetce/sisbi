@@ -24,6 +24,7 @@ import { RegisterComponent } from './components/admin/register/register.componen
 import { ResetSenhaComponent } from './components/admin/reset-senha/reset-senha.component';
 import { ListaUsersComponent } from './components/admin/lista-users/lista-users.component';
 import { HomeAdminComponent } from './components/admin/home-admin/home-admin.component';
+import { CrachaComponent } from './components/admin/cracha/cracha.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { HomeAdminComponent } from './components/admin/home-admin/home-admin.com
     RegisterComponent,
     ResetSenhaComponent,
     ListaUsersComponent,
-    HomeAdminComponent
+    HomeAdminComponent,
+    CrachaComponent
   ],
   imports: [
     BrowserModule,

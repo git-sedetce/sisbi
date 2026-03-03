@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from '../../../models/user.model';
-import { UserServiceService } from '../../../service/user-service.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Audit } from '../../../models/audit.model';
 import { AuditService } from '../../../service/audit.service';
+import { UserServiceService } from '../../../service/user-service.service';
 
 @Component({
   selector: 'app-register',
   standalone: false,
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrl: './register.component.css',
 })
 export class RegisterComponent implements OnInit {
   @ViewChild('formCadastroUser') formCadastroUser!: NgForm;
@@ -61,11 +61,20 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  verificaEmail(email: any) {
-    email = this.user.user_email?.split('@');
-    //console.log('verificaEmail', email)
-    if (email[1] != 'sde.ce.gov.br') {
-      this.toastr.warning('Somente email @SDE podem ser cadastrados!');
+  verificaEmail(): void {
+    const partes = this.user.user_email?.split('@');
+
+    if (!partes || partes.length < 2) {
+      this.toastr.warning('Email inválido!');
+      return;
+    }
+
+    const dominio = partes[1].toLowerCase();
+
+    const dominiosPermitidos = ['sde.ce.gov.br', 'adagri.ce.gov.br'];
+
+    if (!dominiosPermitidos.includes(dominio)) {
+      this.toastr.warning('Domínio de email não permitido!');
       this.formCadastroUser.reset();
     }
   }
@@ -83,11 +92,19 @@ export class RegisterComponent implements OnInit {
     if (this.authenticated === true) {
       const nome_usuario = this.user.user_email?.split('@', 1).toString();
       this.user.user_name = nome_usuario;
-      this.user.user_password = this.serviceUser.CriptografarMD5(this.user.user_name);
-      this.user.confirm_password = this.serviceUser.CriptografarMD5(this.user.user_name);
+      this.user.user_password = this.serviceUser.CriptografarMD5(
+        this.user.user_name,
+      );
+      this.user.confirm_password = this.serviceUser.CriptografarMD5(
+        this.user.user_name,
+      );
     } else {
-      this.user.user_password = this.serviceUser.CriptografarMD5(this.user.user_password);
-      this.user.confirm_password = this.serviceUser.CriptografarMD5(this.user.confirm_password);
+      this.user.user_password = this.serviceUser.CriptografarMD5(
+        this.user.user_password,
+      );
+      this.user.confirm_password = this.serviceUser.CriptografarMD5(
+        this.user.confirm_password,
+      );
       const nome_usuario = this.user.user_email?.split('@', 1).toString();
       this.user.user_name = nome_usuario;
     }
@@ -121,5 +138,4 @@ export class RegisterComponent implements OnInit {
       error: (e) => console.error('e', e),
     });
   }
-
 }

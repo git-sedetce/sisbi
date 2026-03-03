@@ -31,12 +31,22 @@
           </li>
 
           <li class="nav-item" *ngIf="authenticated">
-          <a class="nav-link destaque"
-             routerLink="/cracha"
-             routerLinkActive="active">
-            Crachá
-          </a>
-        </li>
+            <a class="nav-link destaque" routerLink="/cracha" routerLinkActive="active">
+              Crachá
+            </a>
+          </li>
+
+          <li class="nav-item" *ngIf="authenticated">
+            <a class="nav-link destaque" routerLink="/admin" routerLinkActive="active">
+              Lista Participantes
+            </a>
+          </li>
+
+          <li class="nav-item" *ngIf="profile == 1">
+            <a class="nav-link destaque" routerLink="/listusers" routerLinkActive="active">
+              Usuários
+            </a>
+          </li>
         </ul>
 
         <!-- Área direita -->
@@ -48,7 +58,7 @@
           </ng-container> -->
 
           <ng-container *ngIf="authenticated">
-            <span class="fw-bold text-white">Olá {{ user_name }}</span>
+            <span class="fw-bold nav-link destaque ms-2">Olá {{ user_name }}</span>
             <button routerLink="/login" class="btn btn-danger" (click)="logout()">Sair</button>
           </ng-container>
 
