@@ -1,0 +1,127 @@
+/* ================= WRAPPER ================= */
+.como-chegar-wrapper {
+  padding: 3rem 1rem;
+}
+
+/* ================= TÍTULO ================= */
+.titulo-area h2 {
+  color: #1b7f3a;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: #6b7280;
+}
+
+/* ================= MAPA ================= */
+.map-container {
+  position: relative;
+  margin-top: 2rem;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 450px;
+  border: 0;
+}
+
+/* ================= PIN CUSTOM ================= */
+.custom-pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+}
+
+.custom-pin img {
+  width: 45px;
+  animation: bounce 1.5s infinite;
+}
+
+/* Animação do pin */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ================= BOTÕES ================= */
+.acoes {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-direcoes {
+  padding: 0.8rem 1.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+.btn-direcoes.google {
+  background-color: #1b7f3a;
+}
+
+.btn-direcoes.google:hover {
+  background-color: #146c31;
+}
+
+.btn-direcoes.waze {
+  background-color: #33ccff;
+}
+
+.btn-direcoes.waze:hover {
+  background-color: #1aa3cc;
+}
+
+/* ================= ESTACIONAMENTO ================= */
+.estacionamento-card {
+  background: #f3f9f4;
+  border: 1px solid #e3f2e7;
+  padding: 2rem;
+  border-radius: 18px;
+}
+
+.estacionamento-card h5 {
+  color: #1b7f3a;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.estacionamento-card ul {
+  padding-left: 1rem;
+}
+
+.estacionamento-card li {
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+/* ================= ANIMAÇÃO ENTRADA ================= */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .map-container iframe {
+    height: 320px;
+  }
+}
