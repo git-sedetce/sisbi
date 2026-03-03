@@ -1,3 +1,7 @@
+section {
+  background-image: url('/assets/imgs/imagens/cor-de-fundo.png');
+}
+
 .user-section {
   margin: 1rem;
 }
