@@ -12,7 +12,7 @@ class UserController {
         return res.status(400).json({ message: "Dados obrigatórios ausentes" });
       }
 
-      const dominio = user.user_email.split("@")[1];
+      const dominio = novoUser.user_email.split("@")[1];
 
       const dominiosPermitidos = ["sde.ce.gov.br", "adagri.ce.gov.br"];
 

@@ -26,7 +26,7 @@ export class CadastroServiceService {
     return this.http.get(environment.apiUrl + 'checkcpf/' + cpf);
   }
 
-  participanteRural(data: any): Observable<any> {
+  participante(data: any): Observable<any> {
     return this.http.get(environment.apiUrl + 'participantes', { params: { status: data } });
   }
 
@@ -36,6 +36,22 @@ export class CadastroServiceService {
 
   pegarCidade(city: any): Observable<any> {
     return this.http.get(environment.apiUrl + 'takeCity/' + city)
+  }
+
+  contarInscritos(): Observable<any> {
+    return this.http.get(environment.apiUrl + 'totalPalestrantes');
+  }
+
+  contarInscritosStatus(): Observable<any> {
+    return this.http.get(environment.apiUrl + 'totalInscritosStatus');
+  }
+
+  inscritosRegiao(): Observable<any> {
+    return this.http.get(environment.apiUrl + 'totalInscritosRegiao');
+  }
+
+  dadosMapa(): Observable<any> {
+    return this.http.get(environment.apiUrl + 'mapa');
   }
 
   atualizarParticipante(data: any, id: number) {

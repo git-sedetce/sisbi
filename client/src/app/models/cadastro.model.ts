@@ -9,6 +9,7 @@ export class Cadastro {
     public empresa?: string,
     public cargo?: string,
     public cidade_id?: string,
+    public status?: string,
     public confirma_informacao?: boolean,
     public uso_dados: boolean = false,
   ) {}

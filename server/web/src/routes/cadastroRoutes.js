@@ -12,5 +12,9 @@ router.get('/participante/:id', auth.authenticatedUser, checkRole.checkRole([1])
 router.get('/checkcpf/:cpf', CadastroControllers.consultarCPF)
 router.put('/atualizaParticipante/:id', auth.authenticatedUser, checkRole.checkRole([1]), CadastroControllers.atualiza)
 router.delete('/deletarParticipante/:id', auth.authenticatedUser, checkRole.checkRole([1]), CadastroControllers.deleta)
+router.get('/totalPalestrantes', auth.authenticatedUser, checkRole.checkRole([1,2,3,4]), CadastroControllers.totalPalestrantes);
+router.get('/totalInscritosRegiao', auth.authenticatedUser, checkRole.checkRole([1,2,3,4]), CadastroControllers.totalInscritosPorRegiao);
+router.get('/totalInscritosStatus', auth.authenticatedUser, checkRole.checkRole([1,2,3,4]), CadastroControllers.totalInscritosPorStatus);
+router.get('/mapa', auth.authenticatedUser, checkRole.checkRole([1,2,3,4]), CadastroControllers.dadosMapa);
 
 module.exports = router
