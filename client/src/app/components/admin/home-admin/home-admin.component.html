@@ -5,7 +5,7 @@
     <div class="card">Total Inscritos<br><strong>{{ totalInscritos }}</strong></div>
     <!-- <div class="card">Total Inscritos por Região<br><strong>{{ totalInscritosRegiao }}</strong></div> -->
     <div class="card">Total Inscrições Confirmadas<br><strong>{{ totalInscritosConfirmados }}</strong></div>
-    <div class="card">Total Inscrição Penedentes<br><strong>{{ totalInscritosPendentes }}</strong></div>
+    <div class="card">Total Inscrição Pendentes<br><strong>{{ totalInscritosPendentes }}</strong></div>
   </div>
 
   <!-- CONTEÚDO PRINCIPAL -->
@@ -224,12 +224,17 @@
               </div>
             </div>
 
-            <div class="form-group col-sm-3 col-12 ">
-              <div class="form-floating">
-                <input type="text" id="cargo" name="cargo" placeholder="Nª Identidade" required formControlName="cargo"
-                  class="form-control" />
-                <label class="form-label pergunta" for="cargo">Cargo</label>
-              </div>
+            <div class="form-floating col-sm-3 col-12 mb-2">
+              <select class="form-select" formControlName="cargo" required>
+                <option value="" disabled>Selecione oCargo</option>
+                <option value="Prefeito">Prefeito</option>
+                <option value="Secretário de Agricultura">Secretário de Agricultura</option>
+                <option value="Técnico do Município">Técnico do Município</option>
+                <option value="Convidado">Convidado</option>
+                <option value="SDE (Colaborador)">SDE (Colaborador)</option>
+                <option value="Adagri (Colaborador)">Adagri (Colaborador)</option>
+              </select>
+              <label class="form-label pergunta ms-3" for="mes">Cargo</label>
             </div>
 
             <div class="form-floating col-sm-3 col-12 mb-2">

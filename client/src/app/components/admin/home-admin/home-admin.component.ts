@@ -199,16 +199,16 @@ export class HomeAdminComponent implements OnInit {
     if (qtd < 1) return '#FFEDA0';
 
     const escala = [
-      '#FEE5D9',
-      '#FDD0A2',
-      '#FCBBA1',
-      '#FC9272',
-      '#FB6A4A',
-      '#EF3B2C',
-      '#D7301F',
-      '#BD0026',
-      '#A50F15',
-      '#800026',
+      '#E5F5E0',
+      '#C7E9C0',
+      '#A1D99B',
+      '#74C476',
+      '#41AB5D',
+      '#238B45',
+      '#1B7A3A',
+      '#166534',
+      '#145A32',
+      '#0B3D1E',
     ];
 
     const indice = Math.min(
@@ -287,14 +287,14 @@ export class HomeAdminComponent implements OnInit {
   }
 
   pegarCidades() {
-  this.cadastroService.getCitys('takecitys').subscribe(
-    (cityCE: any[]) => {
-      // console.log('CIDADES RECEBIDAS:', cityCE);
-      this.lista_cidade = cityCE;
-    },
-    (erro: any) => console.error('erro', erro),
-  );
-}
+    this.cadastroService.getCitys('takecitys').subscribe(
+      (cityCE: any[]) => {
+        // console.log('CIDADES RECEBIDAS:', cityCE);
+        this.lista_cidade = cityCE;
+      },
+      (erro: any) => console.error('erro', erro),
+    );
+  }
 
   exportarPlanilha(tipo: 'todos' | 'filtrados'): void {
     const dados = tipo === 'todos' ? this.lista_inscritos : this.lista_filtrada;
@@ -403,7 +403,7 @@ export class HomeAdminComponent implements OnInit {
       next: (res: any) => {
         // console.log('registro', res)
       },
-      error: (e) => this.toastr.error(e),
+      error: (e) => console.error('erro ao salvar registro', e),
     });
   }
 
@@ -414,7 +414,7 @@ export class HomeAdminComponent implements OnInit {
       next: (res: any) => {
         // console.log('registro', res)
       },
-      error: (e) => this.toastr.error(e),
+      error: (e) => console.error('erro ao salvar registro', e),
     });
   }
 }

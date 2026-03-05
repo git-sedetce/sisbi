@@ -194,7 +194,7 @@ class CadastroControllers {
       }
 
       // 🔹 Remove o produtor
-      await database.Cadstro.destroy({
+      await database.Cadastro.destroy({
         where: { id: participante.id },
       });
 

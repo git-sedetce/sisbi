@@ -1,10 +1,10 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { CadastroService } from '../cadastro.service';
 import { ToastrService } from 'ngx-toastr';
 import { inject } from '@angular/core';
+import { UserServiceService } from '../user-service.service';
 
 export const roleGuard: CanActivateFn = (route, state) => {
-  const auth = inject(CadastroService);
+  const auth = inject(UserServiceService);
   const router = inject(Router);
   const toastr = inject(ToastrService);
 
