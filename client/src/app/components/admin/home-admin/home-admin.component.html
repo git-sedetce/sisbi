@@ -91,7 +91,7 @@
               </button>
 
               <div class="btn-group w-100">
-                <button type="button" [disabled]="profile_id === 2 || profile_id === 4"
+                <button type="button"
                   class="btn btn-outline-primary btn-form dropdown-toggle" data-bs-toggle="dropdown">
                   Exportar
                 </button>
@@ -157,8 +157,7 @@
               </td>
 
               <td class="text-center">
-                <button class="btn btn-danger btn-sm" title="Desistência"
-                  [disabled]="profile_id !== 1 && profile_id !== 3" (click)="deletar(people)">
+                <button class="btn btn-danger btn-sm" title="Desistência" (click)="deletar(people)">
                   <i class="fa-solid fa-trash-can"></i>
                 </button>
               </td>
@@ -259,7 +258,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" (click)="updatePeople()" [disabled]="profile_id !== 1 && profile_id !== 3"
+        <button type="button" (click)="updatePeople()"
           class="btn btn-warning">Update</button>
       </div>
     </div>
