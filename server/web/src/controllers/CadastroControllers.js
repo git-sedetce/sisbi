@@ -83,19 +83,16 @@ class CadastroControllers {
   }
 
   static async verParticipantes(req, res) {
-    // const { status } = req.query;
     try {
       const getParticpante = await database.Cadastro.findAll({
-        // where: { status_farmer: status },
-        order: [["nome", "ASC"]],
         attributes: [
           "id",
           "inscricao",
           "nome",
           "email",
           "telefone",
-          "cpf",          
-          "cargo",          
+          "cpf",
+          "cargo",
           "status",
           "createdAt",
         ],
@@ -110,6 +107,15 @@ class CadastroControllers {
               },
             ],
           },
+        ],
+
+        order: [
+          [
+            { model: database.Cidade, as: "ass_cadastro_cidade" },
+            "nome_municipio",
+            "ASC",
+          ],
+          ["nome", "ASC"],
         ],
       });
 
@@ -135,8 +141,8 @@ class CadastroControllers {
           "nome",
           "email",
           "telefone",
-          "cpf",          
-          "cargo",          
+          "cpf",
+          "cargo",
           "status",
           "createdAt",
         ],
