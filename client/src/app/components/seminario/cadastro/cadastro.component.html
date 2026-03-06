@@ -5,7 +5,7 @@
       Preencha os dados abaixo para participar do seminário.
     </p>
 
-    <form #formParticipante="ngForm">
+    <form #formParticipante="ngForm" (ngSubmit)="cadastrarParticipante()">
 
       <div class="grid">
         <div class="form-group">
@@ -19,8 +19,8 @@
 
         <div class="form-group">
           <label>Telefone</label>
-          <input type="tel" id="telefone" name="telefone" [(ngModel)]="participante.telefone" #telefone="ngModel" required
-            appTelefoneValido mask="(00) 0 0000-0000||(00) 0000-0000" [dropSpecialCharacters]="true"
+          <input type="tel" id="telefone" name="telefone" [(ngModel)]="participante.telefone" #telefone="ngModel"
+            required appTelefoneValido mask="(00) 0 0000-0000||(00) 0000-0000" [dropSpecialCharacters]="true"
             placeholder="(DDD) 9 XXXX-XXXX" />
 
           <div *ngIf="telefone.touched && telefone.invalid" class="alert alert-danger">
@@ -37,9 +37,8 @@
         <div class="form-group">
           <label>Email</label>
 
-          <input type="email" id="email" name="email" [(ngModel)]="participante.email"
-            #email="ngModel" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-            placeholder="Digite o email do produtor" />
+          <input type="email" id="email" name="email" [(ngModel)]="participante.email" #email="ngModel"
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" placeholder="Digite o email do produtor" />
 
           <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
 
@@ -52,23 +51,14 @@
 
         <div class="form-group">
           <label>CPF</label>
-          <input type="text" id="cpf" name="cpf" [(ngModel)]="participante.cpf" #cpf="ngModel"
-            required placeholder="Digite o CPF ou CNPJ" mask="00.000.000/0000-00||000.000.000-00"
+          <input type="text" id="cpf" name="cpf" [(ngModel)]="participante.cpf" #cpf="ngModel" required
+            placeholder="Digite o CPF ou CNPJ" mask="000.000.000-00"
             (blur)="consultaCPF(participante.cpf, formParticipante)">
           <!--  -->
           <div *ngIf="!cpf.valid && cpf.touched" class="alert alert-danger" role="alert">
             CPF é obrigatório
           </div>
         </div>
-
-        <!-- <div class="form-group full">
-          <label>Empresa/Órgão</label>
-          <input type="text" id="empresa" name="empresa" [(ngModel)]="participante.empresa" #empresa="ngModel"
-            required placeholder="Endereço completo">
-          <div *ngIf="!empresa.valid && empresa.touched" class="alert alert-danger" role="alert">
-            Empresa/Órgão é obrigatório
-          </div>
-        </div> -->
 
         <div class="form-group">
           <label for="cargo">Cargo/Função</label>
@@ -107,7 +97,8 @@
         </div>
 
         <div class="checkbox-item">
-          <input type="checkbox" id="dados" name="uso_dados" [(ngModel)]="participante.uso_dados" #uso_dados="ngModel" />
+          <input type="checkbox" id="dados" name="uso_dados" [(ngModel)]="participante.uso_dados"
+            #uso_dados="ngModel" />
           <label for="dados">
             Autorizo o tratamento dos meus dados pessoais para fins de gestão, execução, monitoramento, avaliação do
             Programa e prestação de contas, nos termos da <strong> Lei nº 13.709/2018</strong> (<strong><i>Lei Geral de
@@ -116,11 +107,55 @@
         </div>
       </div>
 
-      <button type="submit" [disabled]="formParticipante.invalid"
-        (click)="cadastrarParticipante()">
+      <button type="submit" [disabled]="formParticipante.invalid">
         Enviar Cadastro
       </button>
     </form>
   </div>
 </section>
+
+<div class="resultado-overlay" *ngIf="mostrarResultado">
+
+  <div class="resultado-card">
+
+    <!-- SUCESSO -->
+    <div *ngIf="statusInscricao === 'sucesso'">
+      <div class="icon sucesso">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <h2>Inscrição realizada!</h2>
+
+      <p>
+        Sua inscrição foi registrada com sucesso no seminário.
+      </p>
+
+      <button routerLink="/home">
+        Voltar para página inicial
+      </button>
+    </div>
+
+    <!-- PENDENTE -->
+    <div *ngIf="statusInscricao === 'pendente'">
+      <div class="icon pendente">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+
+      <h2>Inscrição pendente</h2>
+
+      <p>
+        Sua inscrição foi recebida, porém está <b>pendente</b>.
+      </p>
+
+      <p>
+        A equipe organizadora entrará em contato caso seja necessário.
+      </p>
+
+      <button routerLink="/home">
+        Voltar para página inicial
+      </button>
+    </div>
+
+  </div>
+
+</div>
 <app-footer></app-footer>

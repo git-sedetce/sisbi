@@ -16,6 +16,8 @@ export class CadastroComponent implements OnInit {
   @ViewChild('formParticipante') formParticipante!: NgForm;
   participante!: Cadastro;
   city_list!: any[];
+  statusInscricao: 'sucesso' | 'pendente' | null = null;
+  mostrarResultado = false;
 
   constructor(
     private router: Router,
@@ -49,23 +51,24 @@ export class CadastroComponent implements OnInit {
   }
 
   cadastrarParticipante() {
-    this.cadastroService.cadastrarParticipante(this.participante).subscribe({
-      next: (response: any) => {
-        if (response.status === 'inscricao_realizada') {
-          this.toastr.success('Inscrição realizada com sucesso!');
-        } else if (response.status === 'pendente') {
-          this.toastr.warning(
-            'Sua inscrição está pendente, pois já existe cadastro para esta cidade.',
-          );
-        }
+  this.cadastroService.cadastrarParticipante(this.participante).subscribe({
+    next: (response: any) => {
 
-        this.formParticipante.reset();
-        this.router.navigate(['/home']);
-      },
+      if (response.status === 'Inscricao_realizada') {
+        this.statusInscricao = 'sucesso';
+      }
+      else if (response.status === 'Pendente') {
+        this.statusInscricao = 'pendente';
+      }
 
-      error: (e) => {
-        this.toastr.error(e.error.message || 'Erro ao realizar cadastro.');
-      },
-    });
-  }
+      this.mostrarResultado = true;
+
+      this.formParticipante.reset();
+    },
+
+    error: (e) => {
+      this.toastr.error(e.error.message || 'Erro ao realizar cadastro.');
+    },
+  });
+}
 }
