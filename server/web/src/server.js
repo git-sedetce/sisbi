@@ -3,6 +3,7 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const routes = require('./routes')
 require ('dotenv').config()
+const envioEmailController = require("./controllers/EnvioEmailControllers");
 
 const app = express()
 app.use(cookieParser())
@@ -23,6 +24,7 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 routes(app)
+envioEmailController.enviarEmailParticipante();
 
 const port = process.env.PORT
 
