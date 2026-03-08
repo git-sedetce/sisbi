@@ -53,8 +53,8 @@
             <td>{{ user.nome }}</td>
             <td class="text-center">{{ user.user_email }}</td>
             <td class="text-center">
-              <i *ngIf="user.user_active" class="bi bi-check-circle-fill text-success fs-5"></i>
-              <i *ngIf="!user.user_active" class="bi bi-x-circle-fill text-danger fs-5"></i>
+              <i *ngIf="user.user_active" class="fa-solid fa-circle-check text-success fs-5"></i>
+              <i *ngIf="!user.user_active" class="fa-solid fa-circle-xmark text-danger fs-5"></i>
             </td>
             <td class="text-center">{{ user.ass_user_sexec.sigla }}</td>
 
