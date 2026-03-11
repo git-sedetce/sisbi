@@ -6,51 +6,53 @@ const nodemailer = require("nodemailer");
 
 class CadastroControllers {
   static async cadastroParticipante(req, res) {
-    const newRegister = req.body;
+  const newRegister = req.body;
 
-    try {
-      if (!newRegister.nome || !newRegister.email || !newRegister.cidade_id) {
-        return res.status(400).json({ message: "Dados obrigatórios ausentes" });
-      }
-
-      const statusInscricao = "inscricao_realizada";
-
-      // const cadastroExistente = await database.Cadastro.findOne({
-      //   where: { cidade_id: newRegister.cidade_id },
-      // });
-
-      // const statusInscricao = cadastroExistente
-      //   ? "pendente"
-      //   : "inscricao_realizada";
-
-      const novoParticipante = await database.Cadastro.create({
-        ...newRegister,
-        status: statusInscricao,
-      });
-
-      const numeroPedido = `SISBI-${String(novoParticipante.id).padStart(6, "0")}`;
-
-      await novoParticipante.update({
-        inscricao: numeroPedido,
-      });
-
-      novoParticipante.inscricao = numeroPedido;
-
-      // 🔹 envia email em background
-      enviarEmailConfirmacao({
-        nome: novoParticipante.nome,
-        email: newRegister.email,
-        inscricao: novoParticipante.inscricao,
-        status: novoParticipante.status,
-      });
-
-      // 🔹 responde imediatamente ao frontend
-      return res.status(200).json(novoParticipante);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: "Erro ao realizar cadastro" });
+  try {
+    if (!newRegister.nome || !newRegister.email || !newRegister.cidade_id) {
+      return res.status(400).json({ message: "Dados obrigatórios ausentes" });
     }
+
+    // 🔹 conta quantos já estão confirmados
+    const totalInscritos = await database.Cadastro.count({
+      where: { status: "inscricao_realizada" }
+    });
+
+    // 🔹 define status baseado no limite
+    const statusInscricao = totalInscritos >= 230
+      ? "pendente"
+      : "inscricao_realizada";
+
+    // 🔹 cria participante
+    const novoParticipante = await database.Cadastro.create({
+      ...newRegister,
+      status: statusInscricao,
+    });
+
+    // 🔹 gera número da inscrição
+    const numeroPedido = `SISBI-${String(novoParticipante.id).padStart(6, "0")}`;
+
+    await novoParticipante.update({
+      inscricao: numeroPedido,
+    });
+
+    novoParticipante.inscricao = numeroPedido;
+
+    // 🔹 envia email em background
+    enviarEmailConfirmacao({
+      nome: novoParticipante.nome,
+      email: novoParticipante.email,
+      inscricao: novoParticipante.inscricao,
+      status: novoParticipante.status,
+    });
+
+    return res.status(200).json(novoParticipante);
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Erro ao realizar cadastro" });
   }
+} 
 
   static async pegaCidades(req, res) {
     try {
