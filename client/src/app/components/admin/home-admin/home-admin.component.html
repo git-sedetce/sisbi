@@ -125,7 +125,7 @@
               <th class="text-center">Cargo</th>
               <th class="text-center">Status</th>
               <th class="text-center">Data de inscrição</th>
-              <th class="text-center" colspan="3">Ações</th>
+              <th class="text-center" colspan="2">Ações</th>
             </tr>
           </thead>
 
@@ -150,11 +150,11 @@
                 </button>
               </td>
 
-              <td class="text-center">
+              <!-- <td class="text-center">
                 <button class="btn btn-warning btn-sm" (click)="cracha(people.id)" title="Imprimir Crachá">
                   <i class="fa-solid fa-id-card-clip"></i>
                 </button>
-              </td>
+              </td> -->
 
               <td class="text-center">
                 <button class="btn btn-danger btn-sm" title="Desistência" (click)="deletar(people)">
@@ -225,13 +225,14 @@
 
             <div class="form-floating col-sm-3 col-12 mb-2">
               <select class="form-select" formControlName="cargo" required>
-                <option value="" disabled>Selecione oCargo</option>
+                <option value="" disabled>Selecione o Cargo</option>
                 <option value="Prefeito">Prefeito</option>
                 <option value="Secretário de Agricultura">Secretário de Agricultura</option>
                 <option value="Técnico do Município">Técnico do Município</option>
                 <option value="Convidado">Convidado</option>
                 <option value="SDE (Colaborador)">SDE (Colaborador)</option>
                 <option value="Adagri (Colaborador)">Adagri (Colaborador)</option>
+                <option value="Cadastro de Reserva ">Cadastro de Reserva</option>
               </select>
               <label class="form-label pergunta ms-3" for="mes">Cargo</label>
             </div>
