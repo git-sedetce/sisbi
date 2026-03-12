@@ -9,13 +9,25 @@ class CadastroControllers {
   const newRegister = req.body;
 
   try {
+
+    // 🔹 bloqueio por data
+    const agora = new Date();
+    const dataLimite = new Date(2026, 2, 12, 15, 0, 0);
+
+    if (agora >= dataLimite) {
+      return res.status(403).json({
+        message: "As inscrições foram encerradas em 12/03/2025 às 15h."
+      });
+    }
+
+    // 🔹 valida campos obrigatórios
     if (!newRegister.nome || !newRegister.email || !newRegister.cidade_id) {
       return res.status(400).json({ message: "Dados obrigatórios ausentes" });
     }
 
     // 🔹 conta quantos já estão confirmados
     const totalInscritos = await database.Cadastro.count({
-      where: { status: "inscricao_realizada" }
+      where: { status: "Inscricao_realizada" }
     });
 
     // 🔹 define status baseado no limite
@@ -52,7 +64,7 @@ class CadastroControllers {
     console.error(error);
     return res.status(500).json({ message: "Erro ao realizar cadastro" });
   }
-} 
+}
 
   static async pegaCidades(req, res) {
     try {
@@ -84,7 +96,7 @@ class CadastroControllers {
     const { cpf } = req.params;
     try {
       const verificaCPF = await database.Cadastro.findOne({
-        where: { cpf_cnpj: cpf },
+        where: { cpf: cpf },
         attributes: ["nome", "cpf"],
       });
       if (verificaCPF === null) {

@@ -51,24 +51,22 @@ export class CadastroComponent implements OnInit {
   }
 
   cadastrarParticipante() {
-  this.cadastroService.cadastrarParticipante(this.participante).subscribe({
-    next: (response: any) => {
+    this.cadastroService.cadastrarParticipante(this.participante).subscribe({
+      next: (response: any) => {
+        if (response.status === 'Inscricao_realizada') {
+          this.statusInscricao = 'sucesso';
+        } else if (response.status === 'Pendente') {
+          this.statusInscricao = 'pendente';
+        }
 
-      if (response.status === 'Inscricao_realizada') {
-        this.statusInscricao = 'sucesso';
-      }
-      else if (response.status === 'Pendente') {
-        this.statusInscricao = 'pendente';
-      }
+        this.mostrarResultado = true;
 
-      this.mostrarResultado = true;
+        this.formParticipante.reset();
+      },
 
-      this.formParticipante.reset();
-    },
-
-    error: (e) => {
-      this.toastr.error(e.error.message || 'Erro ao realizar cadastro.');
-    },
-  });
-}
+      error: (e) => {
+        this.toastr.error(e.error.message || 'Erro ao realizar cadastro.');
+      },
+    });
+  }
 }

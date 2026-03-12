@@ -45,6 +45,11 @@ section {
   right: 0;
 }
 
+.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
 /* Oculta elementos laterais no mobile */
 @media (max-width: 768px) {
   .elemento {
@@ -99,6 +104,23 @@ section {
 
 .btn-inscricao:hover {
   background-color: #146c31;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.btn-inscricao-encerrada {
+  background-color: #C50000;
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.btn-inscricao-encerrada:hover {
+  background-color: #FF2C2C;
   color: #fff;
   transform: translateY(-2px);
 }

@@ -1,3 +1,4 @@
+const { where } = require("sequelize");
 const database = require("../models");
 const nodemailer = require("nodemailer");
 
@@ -71,6 +72,7 @@ async function enviarEmailParticipante() {
         console.log("Hoje é dia de envio de lembretes.");
 
         const participantes = await database.Cadastro.findAll({
+          where: { status: "Inscricao_realizada" },
           attributes: ["id", "inscricao", "nome", "email", "createdAt"],
         });
 

@@ -35,10 +35,14 @@
         </div>
 
         <!-- BOTÃO INSCRIÇÃO -->
-        <div class="mt-4">
+        <div class="mt-4" *ngIf="!bloqueadoPorData">
           <a routerLink="/cadastroseminario" class="btn btn-inscricao">
             Faça sua Inscrição
           </a>
+        </div>
+
+        <div class="mt-4" *ngIf="bloqueadoPorData">
+          <span class="btn-inscricao-encerrada">Inscrições encerradas.</span>
         </div>
 
       </div>
