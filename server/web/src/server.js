@@ -24,7 +24,7 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 routes(app)
-envioEmailController.enviarEmailParticipante();
+// envioEmailController.enviarEmailParticipante();
 
 const port = process.env.PORT
 
